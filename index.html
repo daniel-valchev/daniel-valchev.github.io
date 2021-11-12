@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <title>Daniel Valchev</title>
+
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FEFEFE;
+      font-family: 'Roboto', sans-serif;
+      color: #444;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .avatar {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 100%;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <img src="avatar.png" alt="Avatar" class="avatar">
+    <h1>Hello, World!</h1>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',function(event){
+      var dataText = [ "Hello, World!" ];
+
+      function typeWriter(text, i, fnCallback) {
+        if (i < (text.length)) {
+         document.querySelector("h1").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+          setTimeout(function() {
+            typeWriter(text, i + 1, fnCallback)
+          }, 60);
+        }
+        else if (typeof fnCallback == 'function') {
+          setTimeout(fnCallback, 700);
+        }
+      }
+       function StartTextAnimation(i) {
+         if (typeof dataText[i] == 'undefined'){
+            setTimeout(function() {
+              StartTextAnimation(0);
+            }, 20000);
+         }
+        if (i < dataText[i].length) {
+         typeWriter(dataText[i], 0, function(){
+           StartTextAnimation(i + 1);
+         });
+        }
+      }
+      StartTextAnimation(0);
+    });
+  </script>
+
+</body>
+</html>
